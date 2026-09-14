@@ -130,6 +130,43 @@
     background: #fff; border: 1px solid var(--line); border-bottom-width: 2px;
     border-radius: 5px; padding: 1px 6px; font-size: 11px; font-family: inherit;
   }
+
+  /* 主题切换按钮 */
+  .theme-toggle { padding: 4px 9px; font-size: 13px; }
+  /* 深色模式 */
+  body.dark {
+    --bg: #0f1419; --panel: #1a212b; --ink: #e6edf3; --ink-soft: #9aa7b4;
+    --line: #2a323d; --brand: #4f9bff; --brand-soft: #16263d;
+    --green: #3fb950; --green-soft: #11271a; --red: #f85149;
+    --red-soft: #2d1616; --shadow: 0 2px 10px rgba(0,0,0,.35);
+  }
+  body.dark .flow { background: #11161d; border-color: #2f3b4d; color: #bcd0e8; }
+  body.dark .para { background: #121a14; border-color: #2a3a2c; color: #bfe6c8; }
+  body.dark kbd { background: #11161d; }
+  /* 间隔重复评分按钮 */
+  .rate-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  button.again { border-color: var(--red); color: var(--red); }
+  button.again:hover { background: var(--red); color: #fff; }
+  button.hard { border-color: #d29922; color: #d29922; }
+  button.hard:hover { background: #d29922; color: #fff; }
+  button.good { border-color: var(--green); color: var(--green); }
+  button.good:hover { background: var(--green); color: #fff; }
+  button.easy { border-color: var(--brand); color: var(--brand); }
+  button.easy:hover { background: var(--brand); color: #fff; }
+  .due-badge { font-size: 12px; color: var(--ink-soft); }
+  .due-badge.over { color: var(--red); font-weight: 600; }
+  .due-badge.settable { cursor: pointer; border-bottom: 1px dotted var(--ink-soft); }
+  .due-badge.settable:hover { color: var(--brand); }
+  /* 春招倒计时复习计划条 */
+  .plan-bar {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 14px; box-shadow: var(--shadow); margin-bottom: 14px;
+    font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  }
+  .plan-bar b { color: var(--brand); }
+  .plan-bar .cat { color: var(--ink-soft); font-size: 13px; }
+  .plan-bar .set { cursor: pointer; border-bottom: 1px dotted var(--ink-soft); margin-left: 4px; }
+  .plan-bar .set:hover { color: var(--brand); }
 </style>
 </head>
 <body>
@@ -137,8 +174,11 @@
   <header>
     <h1>🧠 AI 大模型面试刷题 <span class="sub">ZZH · 2027 春招</span></h1>
     <div class="stats">
+      <button id="btnTheme" class="theme-toggle">🌙 深色</button>
       已掌握 <b id="statMastered">0</b> / <span id="statTotal">0</span>
       <span id="statPct">(0%)</span>
+      <span id="statDue" class="due-badge">· 待复习 0</span>
+      <span id="statCountdown" class="due-badge settable" title="点击设置春招目标日">📅 距春招 — 天</span>
     </div>
   </header>
 
@@ -166,8 +206,9 @@
       <label>模式</label>
       <select id="fMode">
         <option value="all">顺序刷题</option>
-        <option value="unmastered">只看未掌握</option>
-        <option value="mastered">只看已掌握</option>
+        <option value="due">只看待复习</option>
+        <option value="new">未学习</option>
+        <option value="grad">已掌握</option>
       </select>
     </div>
     <div class="field">
@@ -179,6 +220,8 @@
     </div>
   </div>
 
+  <div class="plan-bar" id="planBar">📋 今日计划：计算中…</div>
+
   <div class="card" id="card">
     <!-- JS 渲染 -->
   </div>
@@ -186,16 +229,18 @@
   <div class="nav">
     <button id="btnPrev">← 上一题</button>
     <div class="mid">第 <b id="curIdx">0</b> / <span id="curTotal">0</span> 题</div>
-    <div class="mark-btns">
-      <button id="btnUnmaster" class="ghost">标为未掌握</button>
-      <button id="btnMaster" class="primary">✓ 标记为掌握</button>
-    </div>
+      <div class="mark-btns rate-btns">
+        <button id="btnAgain" class="again">🔴 忘记</button>
+        <button id="btnHard" class="hard">🟠 困难</button>
+        <button id="btnGood" class="good">🟢 良好</button>
+        <button id="btnEasy" class="easy">🔵 简单</button>
+      </div>
     <button id="btnNext">下一题 →</button>
   </div>
 
   <div class="tips">
-    快捷键：<kbd>空格</kbd> 显示/隐藏答案 · <kbd>←</kbd> / <kbd>→</kbd> 切换题目 · <kbd>M</kbd> 标记掌握 ·
-    进度自动保存在本机浏览器。
+    快捷键：<kbd>空格</kbd> 显示/隐藏答案 · <kbd>←</kbd> / <kbd>→</kbd> 切换题目 · <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd> 评分(忘/难/良/易) ·
+    进度自动保存在本机浏览器。点「距春招 N 天」可改目标日，点计划条可改每日新学额度。
   </div>
 </div>
 
@@ -210,15 +255,66 @@
   var fSearch = document.getElementById("fSearch");
   var fMode = document.getElementById("fMode");
 
-  // 读取进度
+  // 读取进度（SM-2 间隔重复模型）
   function loadProgress() {
-    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || { mastered: {} }; }
-    catch (e) { return { mastered: {} }; }
+    var p;
+    try { p = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) { p = null; }
+    if (!p || typeof p !== "object") p = {};
+    // 兼容旧版 { mastered:{} }：把已掌握标记为"已毕业"状态，避免丢失历史进度
+    if (p.mastered && typeof p.mastered === "object") {
+      p.cards = p.cards || {};
+      var now0 = Date.now();
+      Object.keys(p.mastered).forEach(function (k) {
+        if (p.mastered[k] && !p.cards[k]) {
+          p.cards[k] = { reps: 2, interval: 6, ease: 2.5, due: now0 + 6 * 86400000, last: now0 };
+        }
+      });
+      delete p.mastered;
+    }
+    p.cards = p.cards || {};
+    p.reviewLog = p.reviewLog || 0;
+    p.streak = p.streak || 0;
+    p.lastDay = p.lastDay || "";
+    return p;
   }
   function saveProgress(p) {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(p)); } catch (e) {}
   }
   var progress = loadProgress();
+
+  function endOfToday() {
+    var d = new Date();
+    d.setHours(23, 59, 59, 999);
+    return d.getTime();
+  }
+  function isGraduated(c) { return c && c.reps >= 2; }
+  function isDue(c) { return c && c.due <= endOfToday(); }
+
+  // SM-2 算法：q 取 0~5（忘记=2 / 困难=3 / 良好=4 / 简单=5）
+  function sm2(c, q) {
+    var ease = c && c.ease ? c.ease : 2.5;
+    var reps = c && c.reps ? c.reps : 0;
+    var interval = c && c.interval ? c.interval : 0;
+    if (q < 3) {
+      reps = 0;
+      interval = 1; // 忘了：明天重学
+    } else {
+      if (reps === 0) interval = 1;
+      else if (reps === 1) interval = 6;
+      else interval = Math.round(interval * ease);
+      reps += 1;
+    }
+    ease = ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+    if (ease < 1.3) ease = 1.3;
+    var now = Date.now();
+    return {
+      reps: reps,
+      interval: interval,
+      ease: Math.round(ease * 100) / 100,
+      due: now + interval * 86400000,
+      last: now
+    };
+  }
 
   // 初始化分类下拉
   (function initCats() {
@@ -232,6 +328,72 @@
   })();
 
   function starStr(n) { return "⭐".repeat(n); }
+  function dueText(c) {
+    var days = Math.ceil((c.due - Date.now()) / 86400000);
+    if (days <= 0) return "今天";
+    if (days === 1) return "明天";
+    return days + " 天后";
+  }
+
+  // ===== 春招倒计时复习计划 =====
+  var COUNTDOWN_KEY = "interview_quiz_target";
+  var DAILY_NEW_KEY = "interview_quiz_dailynew";
+  function getTarget() {
+    var t = null;
+    try { t = localStorage.getItem(COUNTDOWN_KEY); } catch (e) {}
+    return t || "2027-03-15";
+  }
+  function getDailyNew() {
+    var n = 5;
+    try { var v = localStorage.getItem(DAILY_NEW_KEY); if (v) n = parseInt(v, 10) || 5; } catch (e) {}
+    return n;
+  }
+  function daysUntil(dateStr) {
+    var p = dateStr.split("-");
+    var d = new Date(+p[0], +p[1] - 1, +p[2]); d.setHours(0, 0, 0, 0);
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    return Math.round((d - now) / 86400000);
+  }
+  function catShort(name) { return name.replace(/^[^、]*、/, "") || name; }
+  function updateCountdown() {
+    var el = document.getElementById("statCountdown");
+    if (!el) return;
+    var n = daysUntil(getTarget());
+    el.textContent = n >= 0 ? ("📅 距春招 " + n + " 天") : ("📅 春招已过 " + (-n) + " 天");
+  }
+  function updatePlan() {
+    var bar = document.getElementById("planBar");
+    if (!bar) return;
+    var byCat = {}, dueTotal = 0;
+    QUIZ_DATA.forEach(function (q) {
+      var c = progress.cards[q.id];
+      if (isDue(c)) { dueTotal++; byCat[q.cat] = (byCat[q.cat] || 0) + 1; }
+    });
+    var newN = getDailyNew();
+    var cats = Object.keys(byCat).map(function (k) { return '<span class="cat">' + catShort(k) + " " + byCat[k] + "</span>"; });
+    var review = dueTotal > 0
+      ? ("复习 <b>" + dueTotal + "</b> 道（" + cats.join(" · ") + "）")
+      : "今日无待复习 🎉";
+    bar.innerHTML = "📋 今日计划：" + review + " · 新学 <b>" + newN + "</b> 道" +
+      ' <span class="set" id="planSet">(改额度)</span>';
+    var ps = document.getElementById("planSet");
+    if (ps) ps.addEventListener("click", setDailyNew);
+  }
+  function setDailyNew() {
+    var inp = prompt("设置每天新学题数（默认 5）：", String(getDailyNew()));
+    if (!inp) return;
+    var n = parseInt(inp, 10);
+    if (!(n >= 0)) { alert("请输入非负整数"); return; }
+    try { localStorage.setItem(DAILY_NEW_KEY, String(n)); } catch (e) {}
+    updatePlan();
+  }
+  function setTarget() {
+    var inp = prompt("设置春招目标日期（格式 YYYY-MM-DD）：", getTarget());
+    if (!inp) return;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(inp)) { alert("格式不对，请用 YYYY-MM-DD"); return; }
+    try { localStorage.setItem(COUNTDOWN_KEY, inp); } catch (e) {}
+    updateCountdown();
+  }
 
   // 构建筛选后的列表
   function buildList() {
@@ -239,8 +401,10 @@
     return QUIZ_DATA.filter(function (q) {
       if (cat !== "all" && q.cat !== cat) return false;
       if (star && q.stars < star) return false;
-      if (mode === "unmastered" && progress.mastered[q.id]) return false;
-      if (mode === "mastered" && !progress.mastered[q.id]) return false;
+      var c = progress.cards[q.id];
+      if (mode === "due" && !isDue(c)) return false;
+      if (mode === "new" && c) return false;
+      if (mode === "grad" && !isGraduated(c)) return false;
       if (kw) {
         var hay = (q.q + " " + q.flow + " " + q.ans + " " + q.cat).toLowerCase();
         if (hay.indexOf(kw) === -1) return false;
@@ -254,12 +418,21 @@
 
   function refreshStats() {
     var total = QUIZ_DATA.length;
-    var m = 0;
-    QUIZ_DATA.forEach(function (q) { if (progress.mastered[q.id]) m++; });
-    document.getElementById("statMastered").textContent = m;
+    var grad = 0, due = 0;
+    QUIZ_DATA.forEach(function (q) {
+      var c = progress.cards[q.id];
+      if (isGraduated(c)) grad++;
+      if (isDue(c)) due++;
+    });
+    document.getElementById("statMastered").textContent = grad;
     document.getElementById("statTotal").textContent = total;
-    document.getElementById("statPct").textContent = "(" + Math.round(m / total * 100) + "%)";
-    document.getElementById("progressBar").style.width = (m / total * 100) + "%";
+    document.getElementById("statPct").textContent = "(" + Math.round(grad / total * 100) + "%)";
+    document.getElementById("progressBar").style.width = (grad / total * 100) + "%";
+    var dueEl = document.getElementById("statDue");
+    dueEl.textContent = "· 待复习 " + due;
+    dueEl.className = due > 0 ? "due-badge over" : "due-badge";
+    updateCountdown();
+    updatePlan();
   }
 
   function render() {
@@ -272,7 +445,8 @@
     if (idx >= list.length) idx = list.length - 1;
     if (idx < 0) idx = 0;
     var q = list[idx];
-    var isM = !!progress.mastered[q.id];
+    var c = progress.cards[q.id];
+    var isM = isGraduated(c);
 
     var flowHtml = q.flow
       .split("-->")
@@ -284,6 +458,7 @@
         '<span class="badge">' + q.cat + "</span>" +
         '<span class="qno">#' + q.id + "</span>" +
         '<span class="stars">' + starStr(q.stars) + "</span>" +
+        (c ? '<span class="due-badge' + (isDue(c) ? " over" : "") + '">· 下次 ' + dueText(c) + "</span>" : "") +
       "</div>" +
       '<div class="qtext">' + q.q + "</div>" +
       '<div class="reveal-hint" id="hint">点击「显示答案」开始背诵 👇</div>' +
@@ -301,10 +476,7 @@
     document.getElementById("curIdx").textContent = idx + 1;
     document.getElementById("curTotal").textContent = list.length;
 
-    var btnMaster = document.getElementById("btnMaster");
-    var btnUnmaster = document.getElementById("btnUnmaster");
-    btnMaster.className = isM ? "primary marked" : "primary";
-    btnUnmaster.className = isM ? "ghost marked" : "ghost";
+    // 评分按钮（忘记/困难/良好/简单）不再需要按状态高亮
   }
 
   function showAnswer() {
@@ -320,14 +492,26 @@
     }
   }
 
-  function toggleMaster() {
+  function rate(grade) {
     if (!list.length) return;
-    var q = list[idx];
-    if (progress.mastered[q.id]) delete progress.mastered[q.id];
-    else progress.mastered[q.id] = true;
+    var id = list[idx].id;
+    progress.cards[id] = sm2(progress.cards[id], grade);
+    progress.reviewLog = (progress.reviewLog || 0) + 1;
+    // streak：按自然日累计
+    var today = (function () {
+      var d = new Date();
+      return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    })();
+    if (progress.lastDay !== today) {
+      var y = new Date(Date.now() - 86400000);
+      var yStr = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+      progress.streak = (progress.lastDay === yStr) ? (progress.streak + 1) : 1;
+      progress.lastDay = today;
+    }
     saveProgress(progress);
     refreshStats();
     render();
+    savePos();
   }
 
   function go(delta) {
@@ -337,12 +521,40 @@
     if (idx >= list.length) idx = list.length - 1;
     render();
     window.scrollTo({ top: 0, behavior: "smooth" });
+    savePos();
   }
 
   function rebuild() {
     list = buildList();
     idx = 0;
+    if (progress.lastId != null) {
+      for (var k = 0; k < list.length; k++) {
+        if (list[k].id === progress.lastId) { idx = k; break; }
+      }
+    }
     render();
+    savePos();
+  }
+
+  // 续学：记住上次所在题与筛选状态，下次打开自动回到该题
+  function savePos() {
+    try {
+      if (list.length) progress.lastId = list[idx].id;
+      saveProgress(progress);
+      var ui = { cat: fCat.value, star: fStar.value, mode: fMode.value, kw: fSearch.value };
+      localStorage.setItem("interview_quiz_ui", JSON.stringify(ui));
+    } catch (e) {}
+  }
+  function restoreUI() {
+    try {
+      var ui = JSON.parse(localStorage.getItem("interview_quiz_ui"));
+      if (ui && typeof ui === "object") {
+        if (ui.cat) fCat.value = ui.cat;
+        if (ui.star) fStar.value = ui.star;
+        if (ui.mode) fMode.value = ui.mode;
+        if (ui.kw != null) fSearch.value = ui.kw;
+      }
+    } catch (e) {}
   }
 
   // 事件
@@ -352,30 +564,24 @@
   fSearch.addEventListener("input", rebuild);
   document.getElementById("btnPrev").addEventListener("click", function () { go(-1); });
   document.getElementById("btnNext").addEventListener("click", function () { go(1); });
-  document.getElementById("btnMaster").addEventListener("click", toggleMarkToTrue);
-  document.getElementById("btnUnmaster").addEventListener("click", toggleMarkToFalse);
+  document.getElementById("btnAgain").addEventListener("click", function () { rate(2); });
+  document.getElementById("btnHard").addEventListener("click", function () { rate(3); });
+  document.getElementById("btnGood").addEventListener("click", function () { rate(4); });
+  document.getElementById("btnEasy").addEventListener("click", function () { rate(5); });
   document.getElementById("btnShuffle").addEventListener("click", function () {
     if (!list.length) return;
     var r; do { r = Math.floor(Math.random() * list.length); } while (list.length > 1 && r === idx);
     idx = r; render(); window.scrollTo({ top: 0, behavior: "smooth" });
+    savePos();
   });
   document.getElementById("btnReset").addEventListener("click", function () {
-    if (confirm("确定清空所有「已掌握」标记？")) {
-      progress = { mastered: {} };
+    if (confirm("确定清空所有复习进度（已掌握/待复习/连胜）？")) {
+      progress = { cards: {}, reviewLog: 0, streak: 0, lastDay: "" };
       saveProgress(progress); refreshStats(); render();
     }
   });
 
-  function toggleMarkToTrue() {
-    if (!list.length) return;
-    progress.mastered[list[idx].id] = true;
-    saveProgress(progress); refreshStats(); render();
-  }
-  function toggleMarkToFalse() {
-    if (!list.length) return;
-    delete progress.mastered[list[idx].id];
-    saveProgress(progress); refreshStats(); render();
-  }
+  // 评分入口由四个按钮与快捷键 1/2/3/4 共用（见 rate 函数）
 
   // 点击卡片上的提示/答案区也可切换显示
   card.addEventListener("click", function (e) {
@@ -388,10 +594,31 @@
     if (e.code === "Space") { e.preventDefault(); showAnswer(); }
     else if (e.code === "ArrowRight") { go(1); }
     else if (e.code === "ArrowLeft") { go(-1); }
-    else if (e.key === "m" || e.key === "M") { toggleMarkToTrue(); }
+    else if (e.key === "1") { rate(2); }
+    else if (e.key === "2") { rate(3); }
+    else if (e.key === "3") { rate(4); }
+    else if (e.key === "4") { rate(5); }
   });
 
-  // 启动
+  // 主题（深色模式）
+  var THEME_KEY = "interview_quiz_theme";
+  function applyTheme(t) {
+    document.body.classList.toggle("dark", t === "dark");
+    var tb = document.getElementById("btnTheme");
+    if (tb) tb.textContent = t === "dark" ? "☀️ 浅色" : "🌙 深色";
+  }
+  var savedTheme = "light";
+  try { savedTheme = localStorage.getItem(THEME_KEY) || "light"; } catch (e) {}
+  applyTheme(savedTheme);
+  document.getElementById("btnTheme").addEventListener("click", function () {
+    savedTheme = savedTheme === "dark" ? "light" : "dark";
+    try { localStorage.setItem(THEME_KEY, savedTheme); } catch (e) {}
+    applyTheme(savedTheme);
+  });
+  document.getElementById("statCountdown").addEventListener("click", setTarget);
+
+  // 启动（先恢复上次筛选/位置，再续学）
+  restoreUI();
   refreshStats();
   rebuild();
 })();
