@@ -666,113 +666,93 @@ const QUIZ_DATA = [
   ans: "Prompt 是输入给大模型的自然语言指令引导输出；Skill（或 Tool/Function）是模型可调用的外部能力或函数（搜网络、执行代码、查库），Prompt 告诉模型“做什么”，Skill 是“能做什么”的具体手段。AgentScope 是阿里开源的多智能体开发框架，降低多智能体系统门槛，提供预置 Agent 角色和便捷分布式部署。模型分类见第 99 题（逻辑代码类、创意写作类、垂直领域类）。"
 },
 
-// ===================== 十、毕设项目规划要点 =====================
-{
-  id: 107, cat: "十、毕设项目规划要点", stars: 3,
-  q: "毕设项目整体要求与评分标准",
-  flow: "核心:一周内独立完成≥1个大模型应用项目,真实业务价值+技术栈贴合课程+可演示 --> 评分:完整性40%+技术深度25%(LangGraph/RAG/Agent)+创新性15%+答辩20% --> 及格70,不通过需一周内补答辩",
-  ans: "毕设核心目标是每位学员独立在一周内完成至少一个大模型应用开发项目，要求真实有业务价值、技术栈贴合课程（LangChain/LangGraph/RAG/Agent）、成果可演示（答辩需 PPT+可运行源码）。评分维度：项目完整性 40%（功能完整可运行无重大 bug）、技术深度 25%（是否用 LangGraph/RAG/Agent 高级特性）、创新性 15%、答辩表现 20%（PPT 清晰、演示流畅、问答准确）。及格分 70 分，不通过需一周内补答辩才能进就业环节。"
-},
-{
-  id: 108, cat: "十、毕设项目规划要点", stars: 3,
-  q: "毕设加分项与选题路径",
-  flow: "加分:Coze/Dify/N8N编排(+5)/训练微调(+5)/多智能体(+5)/多项目(各+5)/全流程(标注→训练→应用→N8N,+10最推荐) --> 选题三路径:A结合过往经验(推荐)/B标杆项目(HR/电商/全流程)/C升级改造(升LangChain1.x+1~2新功能) --> 技术栈必含LangChain1.x+LangGraph+RAG+向量库+大模型API",
-  ans: "加分项：Coze/Dify/N8N 智能体编排（+5）、模型训练/微调（+5）、多智能体框架 CrewAI/AutoGen/Swarm（+5）、多项目完成（每个 +5）、全流程项目 数据标注→训练→应用→N8N 自动化（+10，最推荐）。选题三条路径：路径 A 结合过往工作经验（推荐，深度结合原行业用 AI 解决痛点）、路径 B 选建议标杆项目（HR 招聘系统、电商多模态分析、全流程综合项目）、路径 C 基于现有源码升级改造（托底，必须升 LangChain 1.x 并加 1~2 个新功能）。技术栈必须含 LangChain 1.x、LangGraph、RAG、向量库（Chroma/Milvus）、大模型 API（DeepSeek/千问）。"
-},
-{
-  id: 109, cat: "十、毕设项目规划要点", stars: 3,
-  q: "毕设一周时间安排与提交要求",
-  flow: "Day1选题+方案(需求/架构/环境) → Day2-3核心(采集/知识库+RAG+Agent+多智能体+外部API) → Day4-5前端+测试+优化 → Day6文档+录Demo(README+PPT+5~8分视频) → Day7答辩 --> 提交:源码仓(requirements+README+注释)/PPT/运行Demo",
-  ans: "时间安排：Day1 选题与方案设计（需求文档+架构图+环境）；Day2-3 核心功能（数据采集/知识库+RAG+Agent 框架+多智能体+外部 API）；Day4-5 前端界面+测试+性能优化；Day6 文档与演示录制（README+PPT+5~8 分钟视频）；Day7 答辩复盘。提交材料：源码仓库（目录清晰+requirements.txt+README+注释）、PPT（背景/架构/功能/亮点/贡献）、运行 Demo（现场或录屏）。README 模板含项目背景、技术架构、核心功能、技术栈、快速开始、项目结构、演示截图、作者信息。"
-},
-
 // ===================== HR 一面 =====================
 {
-  id: 110, cat: "HR一面", stars: 5,
+  id: 107, cat: "HR一面", stars: 5,
   q: "你说“代码自评一般、AI工具从零起步”，真实编码水平怎样？日常怎么工作？",
   flow: "坦诚定边界:能0-1交付中大型AI应用(需求/API/FastAPI/React/Docker) --> 两短板:大厂规范训练不足+算法基础薄 --> 工作流:拆解→Cursor/Trae生成→本人逐行review→自debug→测试→Docker --> 弥补:首份工作选能写代码的团队+业余刷算法",
   ans: "坦白说，我目前真实水平是能独立从 0 到 1 交付一个中小型 AI 应用——包括需求分析、API 对接、FastAPI 后端搭建、React 前端对接、上线部署。但有两个明显短板：一是大厂代码规范训练不足（代码能用，但缺工业级模块抽象、单元测试覆盖率、CI/CD 经验）；二是算法基础相对薄（LLM 微调、训练底层原理我是使用者不是研发者）。我的工作流是：需求拆解 → 用 Cursor/Trae 生成原型 → 本人 review 每一行（不 review 不敢交付）→ 自己 debug → 测试验收 → Docker 部署。弥补方法是第一份工作锁定能让我在真实业务里写代码的团队，业余系统刷算法题和补单元测试。"
 },
 {
-  id: 111, cat: "HR一面", stars: 4,
+  id: 108, cat: "HR一面", stars: 4,
   q: "三段经历里最满意和最不满意的是哪段？不满意学到了什么？",
   flow: "最满意=MediGraph(解决答非所问,GraphRAG) --> 最不满意=收尾太快没沉淀方法论(本草君重搭抽取流程浪费2月) --> 学到:每项目抽一周写Methodology备忘(核心问题/解法/坑/可复用模板),省≥30%重复 → 已养成习惯,本草君直接调MediGraph cypher模板",
   ans: "最满意的是 MediGraph，因为它解决了纯向量检索在医药多跳问答上不靠谱的真实“答非所问”问题，我用 GraphRAG 解了。但我最不满意的是项目收尾太快、没沉淀方法论——当时花半年做出来就直接上线，没抽出时间把“UIE+Neo4j 多跳检索模板”沉淀成可复用笔记，结果本草君又重新搭一遍抽取流程浪费两个月。学到的东西：做完每个项目必须抽一周写“Methodology 备忘”（核心问题、解法思路、踩过的坑、可复用模板），下次起新项目省至少 30% 重复劳动。这习惯我现在养成了，本草君直接调了 MediGraph 的 cypher 模板，省了大量时间。"
 },
 {
-  id: 112, cat: "HR一面", stars: 4,
+  id: 109, cat: "HR一面", stars: 4,
   q: "本科民办、硕士非985/211，为什么没考更好学校？",
   flow: "坦诚承认事实不回避 → 翻篇,重点讲三年怎么补:学业核心课前列+连年一等奖 / 竞赛挑战杯·研电赛(队长)·双碳三等奖 / 科研SCI二区共同通讯 / 技能华为双认证 / 方向主动扩到AI大模型 → 结论:能力由作品说话,非学校标签",
   ans: "是的，高考成绩不算理想，和考前生病、家庭经济条件都有关系。但这事我已翻篇，重点是这三年怎么补的：学业上本专业核心课排前列、连年一等奖学金；竞赛上拿下挑战杯校赛二等奖、研电赛二等奖（队长）、双碳大赛三等奖；科研上以共同通讯作者发了 SCI 二区论文；技能上通过华为 HarmonyOS 双认证；方向上硕士推免后主动扩展 AI 大模型应用开发，用行动补学历标签。我相信最终能力由作品说话，不是由学校标签定义。"
 },
 {
-  id: 113, cat: "HR一面", stars: 4,
+  id: 110, cat: "HR一面", stars: 4,
   q: "本科电子、硕士转控制，为什么不直接读CS/AI研究生？",
   flow: "控制工程是AI应用桥梁学科:控制理论=ML母学科(反馈/最优化/PID→RL reward/Lyapunov→GAN收敛) → 导师方向就是CV+ML,实质接触完整ML Pipeline(采集/预处理/特征/选优/评估) → 推免综合导师+资源+工科底子连续性选交叉路径 → 差异优势:懂数据从哪来到产线(科班CS没有)",
   ans: "控制工程和 CS/AI 并非割裂，反而是为 AI 应用打基础的桥梁学科：控制理论是机器学习母学科之一（反馈、最优化、状态估计，PID→RL reward shaping，Lyapunov→GAN 收敛性）；我的导师方向就是计算机视觉与机器学习，做多光谱+ML 课题，进组后实质接触完整 ML Pipeline（数据采集、预处理、特征工程、模型选优、上线评估）；硕士推免我有考虑 CS 方向，但综合导师课题+实验室资源+本科工科底子连续性选了控制工程交叉路径。反过来 CS 科班对“数据从哪来、模型怎么落产线”没直觉，这是我差异化优势。所以不是“没考上 CS”，而是“控制工程工科基底+AI应用层”更稳的组合。"
 },
 {
-  id: 114, cat: "HR一面", stars: 5,
+  id: 111, cat: "HR一面", stars: 5,
   q: "硕士做CV/多光谱，为什么选AI大模型应用开发而非CV算法/AI算法研究岗？",
   flow: "理性分析:算法岗硬门槛(顶会+LLM SFT/RLHF经验),我SCI二区是应用方向多光谱,不达标 → 应用岗优势:工程能力放大AI价值,LangChain/LangGraph/Neo4j/Chroma真实项目跑通RAG/Agent → 天花板:RAG/Agent 3-5年可走AI架构师/技术负责人 → 是个人兴趣驱动(享受0-1落地)",
   ans: "这个问题我认真分析过，应用开发是匹配我当下能力的最优解：算法岗硬门槛是顶会论文（ACL/NeurIPS/CVPR）+ 大模型 SFT/RLHF 经验，我的 SCI 二区论文是应用方向多光谱成像，和 LLM 不直接相关，按算法岗标准确实不达标；应用开发优势是用工程能力放大 AI 价值，LangChain/LangGraph/Neo4j/Chroma 我都做过实际项目、跑通完整 RAG/Agent 落地链路；职业天花板上 RAG/Agent 工程师 3-5 年可往 AI 架构师/技术负责人/AI 产品负责人发展，不输算法岗；个人兴趣是享受从 0 到 1 把 AI 落地成可访问产品的成就感。不是逃避算法，是综合优势与天花板的理性选择。"
 },
 {
-  id: 115, cat: "HR一面", stars: 4,
+  id: 112, cat: "HR一面", stars: 4,
   q: "比赛/项目里都是队长或核心，具体做了什么？团队怎么分工？",
   flow: "以本草君(4人,2核心开发)为例:产品定位=我主导市场调研(20+爆款笔记提炼“打工人亚健康”场景) / 知识库=我拆5维度(200药/50+方/十八反十九畏/9体质/24节气)用Notion建schema / 技术=我写RAG约束System Prompt+模型选型 / 代码=ai.ts·rag.ts我亲自写+review / 协调=周2次同步+飞书对齐+我路演答辩 → 核心贡献:定方向+把架构+关键模块亲自写",
   ans: "举本草君为例（4 人小队，2 人核心开发）：产品定位是我主导做的市场调研，分析 20+ 篇知乎/小红书中医养生爆款笔记，提炼出“打工人亚健康”场景锐化点，确定本草君定位；知识库结构我把结构化拆解到 5 个维度（200 味中药/50+ 方剂/十八反十九畏/9 体质/24 节气），用 Notion 建 schema，队员填充；技术架构我负责 RAG 约束式生成链路 System Prompt 工程 + 多模型响应速度选型；代码贡献核心模块（ai.ts、rag.ts）我亲自写+review，队员负责前后端；协调每周固定 2 次同步会，需求飞书文档对齐，最后我做了演示稿路演+答辩。总结：作为队长核心贡献是“定方向 + 把架构 + 关键模块亲自写”，不是注册队长。"
 },
 {
-  id: 116, cat: "HR一面", stars: 5,
+  id: 113, cat: "HR一面", stars: 5,
   q: "简历写“风险告警准确性显著改善”，具体多少？怎么测的？样本量？",
   flow: "诚实承认:这是取巧写法,准确说是定性提升缺严格量化 → 方法:对照评测,同问题分别跑纯向量vs GraphRAG,3名医药背景同事盲打分 → 约60题(单跳/多跳/配伍/同名异物四类),多跳+同名异物明显更优 → 遗憾:没算精确率/召回/F1(时间紧无标注规范) → 改进:愿一周内用RAGAS重跑出真实数字",
   ans: "坦白说，这个“显著改善”是我简历上的取巧写法，准确说应该是定性提升，但缺乏严格量化评测。具体来说：我们做对照评测——同一问题分别跑纯向量方案和 GraphRAG 方案，让团队 3 个医药背景同事盲打分；大约评测 60 道题（覆盖单跳、多跳、配伍禁忌、同名异物四类），GraphRAG 在多跳和同名异物场景明显更优；但没正式计算精确率/召回率/F1 这些数字化指标，因为时间紧张且团队没标注规范。这是我项目遗憾点，后续会用 RAGAS/TruLens 标准化框架重跑给出真实数字，可一周内给未来面试官完整对比报告。"
 },
 {
-  id: 117, cat: "HR一面", stars: 4,
+  id: 114, cat: "HR一面", stars: 4,
   q: "2027才毕业，现在为什么找工作？导师催的吗？家里经济压力？",
   flow: "三动机:秋招时间窗(7-11月,错过等春招HC仅30%) / 导师课题组今年完成大论文主体,我有研究弹性(9月起每月2-3天投入不影响课题) / 下一阶段核心目标=真实业务写代码,越早进团队越好 → 导师关系正常且支持,毕业2027.6可灵活实习/提前到岗",
   ans: "三方面原因：一是秋招本身时间窗，技术岗校招集中在 7-11 月，错过等春招（HC 只有秋招 30%），必须在窗口内投递；二是导师课题组今年完成大论文主体（多光谱已投稿），我有研究时间弹性，从 2026 年 9 月起每月拿 2-3 天投入面试/笔试不影响课题；三是“在真实业务里写代码”是我下一阶段核心目标，学位论文做完后需工业级项目验证 RAG/Agent 工程能力，越早进真实团队越好。关于导师：关系正常，他也支持我提前找 AI 方向实习/校招，计划毕业 2027 年 6 月，可按公司入职要求灵活安排实习/提前到岗。"
 },
 {
-  id: 118, cat: "HR一面", stars: 5,
+  id: 115, cat: "HR一面", stars: 5,
   q: "同时拿到 AI大模型应用岗 和 国企制造业工艺岗(中航光电1-1.4万/月)，你选哪个？",
   flow: "选AI岗,三理由:能力曲线(已有真实项目,转AI顺势,工艺岗浪费3年工科积累) / 成长上限(AI 3-5年走架构师/Agent负责人,远高于工艺员) / 现实(洛阳房价可行但核心优势须在AI兑现) → 诚实:短期没拿到AI offer,中航光电作保底不拒(给家安心+退路) → 把球抛回:希望贵司offer有说服力让我放掉保底",
   ans: "我会选 AI 大模型应用开发岗，理由有三：能力曲线上我已有 LangChain/LangGraph/Neo4j 真实项目经验，从控制工程转 AI 应用岗是顺势而为，国企工艺岗会让 3 年工科积累浪费；成长上限上 AI 应用岗 3-5 年可走 AI 架构师/Agent 平台负责人，上限远高于工艺员；现实匹配上洛阳房价对生活成本可行，但核心优势必须在 AI 赛道兑现，否则 3 年后工艺员要被年轻人迭代。但诚实说，如果短期没拿到 AI offer，中航光电这类稳定岗我会作保底不拒绝——不是贪图安逸，是给家安心给自己退路。我希望贵司 offer 有足够说服力，让我有底气放掉保底选项。"
 },
 {
-  id: 119, cat: "HR一面", stars: 3,
+  id: 116, cat: "HR一面", stars: 3,
   q: "你说喜欢创新，但企业很多是按部就班交付，能适应吗？",
   flow: "用自身经历证:本草君上线前两周每天修用户反馈小bug(稳定工作) / MediGraph Graph Schema迭代8版每次写migration+回归+补文档 / 学位论文600样本重复跑3次CV(无创新) → 认知:创新+稳定不二选一,先稳定复用再创新迭代,80%稳定交付+20%新尝试 → 既能坐住也能创新",
   ans: "这个问题我想过，因 MediGraph 和本草君项目一半时间就是按部就班：本草君上线后前两周每天有用户反馈小 bug（如 RAG 回答没触兜底告警、SSE 流式断流），必须当晚修，本质就是稳定性工作；MediGraph 的 Graph Schema 迭代过 8 个版本，每次写 migration、跑回归、补文档，也是稳定工作；学位论文更是典型，4 类药材 600 样本重复跑 3 次 CV 才能定稿，无任何创新。我理解的“创新+稳定”不是二选一，而是“先稳定复用，再创新迭代”——日常 80% 精力放稳定交付，留 20% 做新尝试（如本草君加体质维度、MediGraph 试 reranker）。所以我既能坐得住也能创新，不矛盾。"
 },
 {
-  id: 120, cat: "HR一面", stars: 4,
+  id: 117, cat: "HR一面", stars: 4,
   q: "同时推进学位论文+MediGraph+本草君，怎么管理时间？最高压时刻？",
   flow: "三板斧:Timeboxing(Notion时间块,上午论文/下午开发/晚review) / Eisenhower矩阵(紧急重要先做) / 冗余buffer(关键节点前留2周) → 最压:2026.8本草君答辩前3天撞MediGraph生产bug(Neo4j OOM),熬2通宵先修OOM(连接池限制)再备答辩 → 原则:两件事不能同时崩溃,先稳稳态再去拼新",
   ans: "我的时间管理三板斧：Timeboxing 每天用 Notion 做时间块（上午学位论文峰值专注、下午项目开发、晚上 review+debug）；优先级用 Eisenhower 矩阵，紧急重要（项目上线、论文投稿）先做，重要不紧急（沉淀方法论）排固定块；冗余设计每个关键节点前留 2 周 buffer。印象最深高压时刻：2026 年 8 月本草君答辩前 3 天同时撞 MediGraph 生产 bug（Neo4j 偶尔 OOM），连续熬 2 通宵，凌晨 3 点先修掉 OOM（加连接池限制），白天备答辩。怎么扛：两件事不能同时崩溃，先稳住稳态（MediGraph）再去拼新状态（比赛答辩），这习惯让我任何多线程场景不慌。"
 },
 {
-  id: 121, cat: "HR一面", stars: 4,
+  id: 118, cat: "HR一面", stars: 4,
   q: "你的3-5年职业规划？没走通有 Plan B 吗？",
   flow: "3年台阶:0-6月深扎工业级RAG/Agent规范(单测/CI-CD/可观测/Prompt版本/LLM eval,我最薄) / 6-24月独立负责AI模块+带1-2实习生 / 24-36月某产品线技术owner → 5年+:AI应用架构师/Agent平台负责人 → Plan B:走不通则MLOps/数据工程(论文有数据预处理/特征/评估链路,跨过去门槛不高) → 主线:不脱离工科+数据+AI",
   ans: "我的 3 年规划：0-6 个月作为 AI 应用开发工程师深扎工业级 RAG/Agent 工程规范（单元测试、CI/CD、可观测性、prompt 版本管理、LLM eval 体系，这些我最薄弱）；6-24 个月能独立负责一个 AI 应用模块设计与交付，开始带 1-2 实习生；24-36 个月成为某 AI 产品线技术 owner，对商业目标和工程实现负责。更长远（5 年+）成为 AI 应用架构师或 Agent 平台负责人。Plan B：如果 AI 应用岗没走通（行业意外转向），往 MLOps/数据工程走——学位论文积累了数据预处理、特征工程、模型评估完整链路，跨过去门槛不高。最后优先保证不脱离工科+数据+AI 主线，避免路径漂移。"
 },
 {
-  id: 122, cat: "HR一面", stars: 4,
+  id: 119, cat: "HR一面", stars: 4,
   q: "AI风口突然降温（类似O2O/区块链），你怎么办？",
   flow: "清醒务实:风口降应用层工程师也不裁,LLM工程化(prompt/RAG/Agent/评测)可平移任何技术栈 → 底层能力跨周期复用(Python/FastAPI/协作/管理) → Plan B回MLOps/AI工程化(需求永远在且稳增) → 退一万步回学位论文方向(机器视觉+光谱,工业质检/食品/医药刚性需求) → 策略:长期押AI,每段积累可跨周期工程能力",
   ans: "这是个非常现实的问题，我认真想过：AI 风口即使降温，应用层工程师不会被裁——AI 应用开发核心能力是 LLM 工程化（prompt 工程、RAG、Agent 编排、LLM 评测），这些技能可平移任何类似技术栈（下一代模型来了只需切换 API）；底层能力跨周期复用——Python/FastAPI/文档协作/项目管理是工程师通用能力，不因风口变化失效；真正 Plan B 是回退 MLOps/AI 工程化赛道，AI 落地从来不是单纯写 prompt，需数据处理、模型部署、监控告警，需求永远在且稳定增长；退一万步若大模型被证伪，回学位论文方向——机器视觉+光谱分析在工业质检、食品检测、医药有刚性需求，本科电子信息工科底子足以支撑。核心策略：长期押 AI，但每段经历都积累可跨周期工程能力。"
 },
 {
-  id: 123, cat: "HR一面", stars: 4,
+  id: 120, cat: "HR一面", stars: 4,
   q: "期望薪资多少？做过市场调研吗？",
   flow: "给范围非单点:调研BOSS/拉勾,一线大厂25-32K×13-16,二线新一线15-22K×13-14,中部(郑/汉/长)10-17K×12-13 → 我定位(控制硕士+非CS科班+无大厂实习)开12-17K → 优先级:技术栈匹配/能否做核心RAG·Agent/成长>底薪 → 弹性:13/14薪可略低于上限 → 底线≥10K(低于先和家人商量)",
   ans: "我做了一点市场调研，结合情况开范围：AI 应用开发岗应届硕士市场价，一线大厂白菜 25-32K×13-16 薪，二线新一线（杭州/成都/南京）15-22K×13-14 薪，二线中部（郑州/武汉/长沙）10-17K×12-13 薪。我的定位：控制工程硕士+非 CS 科班+应届无大厂实习，预期合理薪资 12-17K。谈判优先级：薪资非唯一因素，技术栈匹配度、能否参与 Agent/RAG 核心项目、成长速度比底薪更重要。弹性：若贵司 13/14 薪甚至更高，可接受月薪略低于上限。最低底线希望不低于 10K（低于先和家人商量）。这是初步判断，可详细聊。"
 },
 {
-  id: 124, cat: "HR一面", stars: 3,
+  id: 121, cat: "HR一面", stars: 3,
   q: "还在看哪些机会？同时拿3个offer按什么排序？",
   flow: "坦诚说在看:主投AI大模型应用(RAG/Agent,杭/郑/洛/京) / 保底少数制造业(中航光电/洛阳613所) / 不考虑纯算法研究岗 → 排序权重:技术栈匹配40% > 成长路径25% > 城市生活20%(洛/郑/杭,不开封驻马店) > Package15% → 表态:更希望锁定能深耕团队而非频繁换",
   ans: "我目前投递/关注方向：主投 AI 大模型应用开发岗（RAG/Agent 方向，杭州/郑州/洛阳/北京都有投）；保底考虑少数制造业大厂中航光电、洛阳 613 所（稳定方向、本地生活）；不会考虑纯算法研究岗（不匹配能力曲线）、AI Lab 纯研发岗。若同时拿 3 个 offer，排序逻辑按权重：40% 技术栈匹配度（能否做 RAG/Agent/LangChain 实际项目）、25% 成长路径（有无 senior 带、晋升通道）、20% 城市与生活（女友接受范围：洛阳/郑州/杭州，开封和驻马店不行）、15% 整体 Package。如果贵司 offer 在技术栈匹配和成长路径明显胜出，我可稳定入职——我有选择，但更希望锁定能长期深耕的团队。"
@@ -780,90 +760,96 @@ const QUIZ_DATA = [
 
 // ===================== 技术二面 =====================
 {
-  id: 125, cat: "技术二面", stars: 5,
+  id: 122, cat: "技术二面", stars: 5,
   q: "现场写一段 LangGraph StateGraph 核心代码（State+Node+Edge）",
   flow: "定义State(TypedDict,带messages用add_messages reducer+intent/entities/tool_history/citations/iteration字段) → graph=StateGraph(State) → add_node(router/entity_extract/cypher_search/vector_search/synthesize/fallback) → add_conditional_edges(router按route_decision分发) + add_edge(各→synthesize→END, fallback→END) → app=graph.compile()",
   ans: "能写 8-15 行核心：class MedGraphState(TypedDict) 定义 messages 用 Annotated[list, add_messages]（多轮不丢）、intent/entities/tool_history/citations/iteration 字段；graph=StateGraph(MedGraphState)；add_node 加 router/entity_extract/cypher_search/vector_search/synthesize/fallback；add_conditional_edges 从 router 按 route_decision 分发（entity→entity_extract，vector→vector_search，fallback→fallback）；add_edge 串联 entity_extract→cypher_search→synthesize、vector_search→synthesize、synthesize→END、fallback→END；app=graph.compile()。关键设计：State 用 TypedDict 类型安全；iteration 每次 +1，超 8 强制走 fallback 防死循环。"
 },
 {
-  id: 126, cat: "技术二面", stars: 5,
+  id: 123, cat: "技术二面", stars: 5,
   q: "本草君“切换至响应更快模型”，从哪个到哪个？多少秒降到多少秒？怎么测？",
   flow: "原Qwen-Plus(TTFT中位4.2s,P95 6.8s) → 切DeepSeek-V3(中位1.8s,P95 3.1s) → 质量盲评5分制×50道医案:DeepSeek 4.3 > Qwen 4.1 > Kimi 3.9 → 成本:DeepSeek ¥0.27/百万tokens vs Qwen ¥0.8,降66% → 测法:真实问题采样50道(单方/方/体质/节气),Python脚本统一调API,time.monotonic()测首chunk",
   ans: "本草君上线初期用 Qwen-Plus，用户反馈首字延迟平均 36 秒过长流失率高。我做三组对比：首字延迟 TTFT——Qwen-Plus 中位 4.2s（P95 6.8s）、DeepSeek-V3 中位 1.8s（P95 3.1s）、Kimi-K2.5 中位 2.5s；质量盲评 5 分制×50 道医案——DeepSeek 4.3、Qwen 4.1、Kimi 3.9；成本 DeepSeek ¥0.27/百万 tokens vs Qwen ¥0.8，仅 1/3。测试方法：从本草君真实问题采样 50 道覆盖四类，本地 Python 脚本统一调各家 API，TTFT 用 time.monotonic() 测连接耗时+首 chunk 时差。最终切 DeepSeek-V3，TTFT P95 从 6.8s 降到 3.1s，单次成本降 66%，数字写进团队周报作选型依据。"
 },
 {
-  id: 127, cat: "技术二面", stars: 5,
+  id: 124, cat: "技术二面", stars: 5,
   q: "MediGraph“同名异物风险告警显著改善”怎么测的？测试集多大？什么工具？",
   flow: "设计:80题按4类分层(单跳25/多跳25/配伍15/同名异物15),来源真实用户+典籍 → 双轨评测:机器用RAGAS(Faithfulness/Answer Relevancy/Context Precision)+人工3名中医盲评5分制 → 对照:同问题跑纯向量(BGE+Chroma)vs GraphRAG(Neo4j Cypher多跳),清缓存 → 核心:同名异物Faithfulness 0.62→0.86(+39%),人工3.4→4.6 → Kappa=0.78一致性高",
   ans: "评测设计：测试集 80 道题按 4 类分层采样（单跳 25、多跳 25、配伍禁忌 15、同名异物 15），来源本草君真实用户问题+医药典籍；双轨评测——机器指标用 RAGAS 的 Faithfulness/Answer Relevancy/Context Precision 三指标，人工指标用 3 名中医药背景同事盲评 5 分制（准确性/完整性/可解释性）；对照同问题分别跑纯向量（BGE-zh+Chroma）和 GraphRAG（追加 Neo4j Cypher 多跳召回），中间清缓存。核心指标：同名异物 Faithfulness 0.62→0.86（+39%）、Answer Relevancy 0.71→0.93、人工盲评 3.4→4.6。人工分用 Cohen's Kappa 算一致性的 Kappa=0.78。盲点：没用 RAGAS Context Recall（中文语义召回不稳），以 faithfulness 作代理。结果作内部决策依据，决定本草君下版也接 GraphRAG。"
 },
 {
-  id: 128, cat: "技术二面", stars: 4,
+  id: 125, cat: "技术二面", stars: 4,
   q: "三个项目时间重叠，怎么分配精力？本草君代码复用 MediGraph 底层吗？",
   flow: "时间法:Eisenhower+周Timeboxing(2025.9-2026.2全力论文 / 2026.3-06论文收尾+MediGraph主线 / 2026.7-08 MediGraph收尾+本草君全力 / 09后复盘) → 本草君不用LangChain:场景ToC轻量,浏览器bundling重,多轮记忆手写(Prompt拼接+localStorage+Supabase)100+行TS够 → 复用克制:复用Neo4j Schema思路+RAG约束Prompt模板,不复用Agent编排(单Agent无多跳)",
   ans: "时间分配用 Eisenhower+周 Timeboxing：2025.9-2026.2 全力学位论文；2026.3-06 论文收尾+MediGraph 主线；2026.7-08 MediGraph 收尾+本草君全力（队长主导）；09 后复盘。本草君为什么没用 LangChain：场景是面向大众轻量 ToC 聊天，多轮+SSE+Supabase 鉴权，LangChain 浏览器端 bundling 太重；直接调用更可控，多轮记忆手写（Prompt 拼接+localStorage+Supabase 持久化）100+ 行 TS 够，不需重量级抽象；复用是克制的——复用 Neo4j Graph Schema 思路（但本草君用纯向量+规则引擎）和 RAG 约束式 Prompt 模板（从 MediGraph 直接抄），没复用 Agent 编排（本草君单 Agent 无多跳）。所以本草君不是迷你版 MediGraph，而是按场景做的第二个独立工程决策。"
 },
 {
-  id: 129, cat: "技术二面", stars: 5,
+  id: 126, cat: "技术二面", stars: 5,
   q: "MediGraph 用 UIE+doccano 做实体关系抽取，训练数据多少？什么 loss？epoch？嵌套怎么处理？",
   flow: "1500条标注(药典/本草+真实语料),4类(药材/方剂/证候/功效,分布不均) → doccano+BIOES标注(医药多词组合需明确边界) → 嵌套用GlobalPointer解码(O(n²)多标签,天然支持嵌套,不选指针因类别不平衡偏高频) → loss=FocalDiceLoss(Dice对不平衡鲁棒+Focal难样本,0.5/0.5) → 配置AdamW lr2e-5 warmup10% 20epoch,dev F1 0.78→0.89,test 0.87 → 真训练代码<200行",
   ans: "实体抽取 Pipeline 细节：语料从《中国药典》《本草纲目》+真实用户语料抽样 1500 条标注；实体 4 类（药材/方剂/证候/功效）分布严重不均（方剂 60%、证候 8%）；doccano 用 BIOES 标注体系（医药实体多词组合多需明确边界）；嵌套处理用 GlobalPointer 解码（苏剑林 O(n²) 多标签分类，天然支持嵌套，不选指针网络因类别不平衡易偏高频）；loss 用 FocalDiceLoss（Dice 对类别不平衡鲁棒+Focal 处理难样本，0.5/0.5）；训练 AdamW lr=2e-5 warmup10% 20epoch，dev F1 从 UIE 预训练 0.78 升到 0.89，5 折交叉 test 0.87（比 baseline +9）；失败案例“桂枝汤加葛根”长实体边界切错，加规则兜底。真正训练代码不超 200 行，大部分是数据+评测工程，模型用 PaddleNLP 的 UIE 框架。"
 },
 {
-  id: 130, cat: "技术二面", stars: 5,
+  id: 127, cat: "技术二面", stars: 5,
   q: "MediGraph Agent State 有哪些字段？Conditional Edge 判断？死循环怎么处理？",
   flow: "State字段:messages(add_messages)/intent(单跳·多跳·配伍·消歧)/raw+rewritten_query/entities/graph_paths/vector_chunks/citations/tool_history/iteration/confidence → Conditional Edge:route_decision(intent,iteration),多跳且<3→graph,消歧且多实体→disambiguate,≥3→fallback,其他→vector → 防死循环:iteration+1超3强fallback / tool_history黑名单(同工具+同实体2轮内拒) / Node timeout=8s / confidence<0.5转人工",
   ans: "MediGraph State 完整定义：messages(多轮)、intent(Literal 单跳/多跳/配伍/消歧)、raw_query、rewritten_query、entities、graph_paths(Neo4j 多跳)、vector_chunks、citations、tool_history、iteration、confidence。Conditional Edge：router 后 route_decision(intent, iteration) 判断——intent==多跳且 iteration<3→graph_search；intent==消歧且实体>1→disambiguate；iteration>=3→强制 fallback；其他→vector_search。防死循环：iteration 每次 +1 超 3 强 fallback；tool_history 黑名单（同工具+同实体 2 轮内重复直接拒）；Node timeout=8s 强 fallback；confidence<0.5 转人工兜底。真实踩坑：早期 iteration<5 致 0.5% query 反复调 graph+vector 各 5 次超 30s，改 <3 后超时 case 消失。"
 },
 {
-  id: 131, cat: "技术二面", stars: 5,
+  id: 128, cat: "技术二面", stars: 5,
   q: "本草君 SSE 流式怎么实现？后端用什么？考虑过 WebSocket 吗？为什么选 SSE？",
   flow: "SSE vs WebSocket对比:SSE=HTTP单向/server→client,IE不支持但现代浏览器OK,心跳内置,鉴权普通Cookie,部署Vercel友好 / WS=双向,全支持,心跳自实现,需sticky → 选SSE因:场景单向(用户发query服务端推token) / Vercel免费层Edge Function原生ReadableStream零成本 / EventSource自动重连+queryId续传 → 后端Supabase Edge Function(Deno)ReadableStream代理DeepSeek,前端EventSource收data:[DONE]关 → 踩坑:max_tokens不设致8000+tokens browser overflow(每50chunk flush);EventSource 3分钟空闲断(30s心跳);关页签未关stream(AbortController+pagehide)",
   ans: "SSE vs WebSocket：SSE 是 HTTP 单向（server→client），IE 不支持但本草君是 modern 浏览器，心跳协议内置，鉴权普通 Cookie/Header，Vercel 友好；WebSocket 双向，全支持，心跳自实现，需 sticky session。选 SSE 理由：场景单向（用户发 query 后服务端推 token）；Vercel 免费层友好（Edge Function 的 ReadableStream 直接支持零成本，WebSocket 需专门连接服务器）；断线重连简单（EventSource 自动重连+queryId 续传）。实现：后端 Supabase Edge Function(Deno) 用 ReadableStream 代理 DeepSeek stream，前端 React 用 EventSource 收 data 拼内容、遇 [DONE] 关。踩坑：早期没设 max_tokens，8000+ tokens 致 browser buffer overflow（改每 50 chunk flush）；EventSource 3 分钟空闲断（加 30s 心跳）；关页签未关 stream 浪费 token（加 AbortController+pagehide 兜底）。"
 },
 {
-  id: 132, cat: "技术二面", stars: 5,
+  id: 129, cat: "技术二面", stars: 5,
   q: "本草君多轮对话记忆和追问识别怎么实现？Prompt 还是模型端？判定规则？",
   flow: "存储:前端localStorage(session→最近20条)+后端Supabase(conversations/messages+RLS) → 拼接:每轮取最近10条+System Prompt+当前query→messages,超3500 token用小模型(gpt-4o-mini)摘要中间 → 追问识别规则函数:isShortQuery(<15字)且含代词(它/这个/上面)→调LLM改写独立句子,否则原样 → 边界:超长用小模型摘要非切片 / 跨session不支持 / 改写失败留原query / 代词误判(改写前后相似<0.3回退) → 案例:“附子副作用?”→“那禁忌呢?”改“附子禁忌?”命中提升",
   ans: "本草君多轮架构：存储层前端 localStorage（sessionId→最近 20 条），后端 Supabase（conversations+messages 表，外键 user_id+session_id，加 RLS）。Prompt 拼接：每轮取 localStorage 最近 10 条+系统 Prompt（人设+知识库声明+兜底）+当前 query 拼 messages；token 估算 len*1.5，超 3500 用小模型 gpt-4o-mini 摘要中间历史；喂 DeepSeek。追问识别+改写用规则函数：isShortQuery(<15字) 且含代词正则（它/他/她/这个/那个/上面）则调 LLM 改写独立句子，否则原样。关键边界：超长用摘要非 [-10:] 切片；跨 session 不支持（产品定位）；改写失败留原 query；代词误判（改写前后相似<0.3 回退）。案例：用户问“附子副作用？”→“那禁忌呢？”触发改写得“附子禁忌？”命中率显著提升。"
 },
 {
-  id: 133, cat: "技术二面", stars: 5,
+  id: 130, cat: "技术二面", stars: 5,
   q: "MediGraph 用 Neo4j+Cypher 多跳，为什么不直接用 Microsoft GraphRAG？",
   flow: "先澄清术语:狭义GraphRAG=向量+图谱融合(我做的,主流) / 广义Microsoft GraphRAG=LLM社区发现(Leiden)+全局摘要,适宏观问题不适精确多跳 → 选型理由:场景是精确多跳非宏观摘要(需Cypher精确遍历MATCH p=(n)-[r*1..3]->(m)) / 可解释(医药合规要回溯三元组,Neo4j可视化) / 成本(Microsoft全图摘要动辄百万token) / 中文(Microsoft 2024中文社区发现差) / 宏观需求<5%优先级低",
   ans: "“GraphRAG”业界有狭义广义两种：狭义（最常见）是向量+图谱融合混合架构，如我的 MediGraph；广义（Microsoft 提出）是用 LLM 对图谱做社区发现（Leiden 算法）+全局摘要，适合“问数据集宏观问题”（如“本草纲目出现最多药材”），不适合精确召回多跳关系。我的选型：场景是精确多跳非宏观摘要，用户问“含某药材方剂有哪些配伍禁忌”需 Cypher 精确图遍历（MATCH p=(n)-[r*1..3]->(m) WHERE n.name='半夏' RETURN p），Microsoft 全局摘要反而引入噪声；可解释性上医药合规要求每条答案回溯具体三元组，Neo4j 自带图可视化比摘要链路可追溯；成本上 Microsoft GraphRAG 需 LLM 跑全图摘要动辄百万 token；中文上 Microsoft 2024 中文社区发现差；宏观摘要需求<5% 优先级低。若问“全本草整体用药趋势”这种宏观问题我可能用 Microsoft GraphRAG，但当前场景不需要。"
 },
 {
-  id: 134, cat: "技术二面", stars: 5,
+  id: 131, cat: "技术二面", stars: 5,
   q: "用 BGE-zh 做 Embedding，哪个变体？维度？怎么切？切多大？为什么这个 chunk_size？",
   flow: "变体:本草君bge-small-zh-v1.5(512维,快4倍,ToC速度优先) / MediGraph bge-large-zh-v1.5(1024维,精度优先) → 距离cosine(Chroma默认) → 切RecursiveCharacterTextSplitter,chunk=256,overlap=50,分隔符[\\n\\n,\\n,。,；,、, ]（中草本草并列结构） → 实验128/256/512/1024四档Recall@5:256最高0.81,512 0.76,128 0.62,1024 0.71→选256 → overlap 50最好(不重掉8%,重100升1%但成本+10%) → 弃SemanticChunker(中文本草短句易切碎,0.81→0.74) / 没用Reranker因预算(应改进)",
   ans: "BGE-zh 选型细节：本草君用 bge-small-zh-v1.5（512 维，110M，速度优先比 large 快 4 倍），MediGraph 用 bge-large-zh-v1.5（1024 维，精度优先）；距离 cosine（Chroma 默认）；切片 RecursiveCharacterTextSplitter，chunk_size=256、overlap=50，自定义分隔符 [\\n\\n,\\n,。,；,、, ]（中文本草“主治：xxx；禁忌：xxx”并列结构，句号+顿号+分号关键）；chunk_size 实验 128/256/512/1024 四档跑 Recall@5：256 最高 0.81、512 次之 0.76、128 太碎 0.62、1024 掉 0.71→选 256；overlap 50 最好（不重掉 8%、重 100 升 1% 但成本+10%）；没用 SemanticChunker（中文本草短句易切碎 0.81→0.74 弃用）；没用 Reranker 因预算有限（应改进点）。两个项目不同 BGE 配置反映场景差异判断：本草君 ToC 速度优先，MediGraph ToB 精度优先。"
 },
 {
-  id: 135, cat: "技术二面", stars: 4,
+  id: 132, cat: "技术二面", stars: 4,
   q: "本草君/MediGraph 怎么部署？遇到什么生产问题？怎么排查？",
   flow: "部署:MediGraph=FastAPI+Gunicorn+Uvicorn(4w×2容器)阿里云ECS+Docker Compose,React→Vercel,Neo4j容器+Chroma内嵌 / 本草君=Supabase Edge Function(Deno)+React/Vite→Vercel+Supabase Postgres+localStorage → 4坑:Chroma冷启动慢(2.5GB索引3-4分钟首访超时→warmup+healthcheck+loading) / Edge Function冷启8s(定位Deno占5.2s→Vercel Cron每4分ping降至1.8s) / Neo4j OOM(32G扛100并发炸→dmesg+OOM killer+heap.maxSize=24G+连接池+跳数≤6+timeout10s) / DeepSeek 429(50+并发→前端指数退避+Edge令牌桶50/s) → 监控CloudMonitor+Sentry+Supabase",
   ans: "部署架构：MediGraph 后端 FastAPI+Gunicorn+Uvicorn（4 workers×2 container）阿里云 ECS+Docker Compose，前端 React→Vercel，Neo4j Community 容器+Chroma 内嵌 FastAPI；本草君 Supabase Edge Function（Deno）+React/Vite→Vercel+Supabase Postgres+localStorage。真实生产问题：1) Chroma 冷启动慢——2.5GB 索引加载 3-4 分钟首访超时，docker stats 看 CPU 100% 定位 HNSW 构建，加 warmup+healthcheck+友好 loading；2) Edge Function 冷启 8s——console.log 标记阶段定位 Deno 占 5.2s，加 Vercel Cron 每 4 分 ping 降至 1.8s；3) Neo4j OOM——dmesg 看 OOM killer+heap.maxSize=24G+连接池+跳数≤6+timeout 10s；4) DeepSeek 429——前端指数退避+Edge 令牌桶 50/s。监控用 CloudMonitor+Sentry+Supabase Dashboard，没引 LangSmith/Phoenix 因预算（压轴题改进方向）。"
 },
 {
-  id: 136, cat: "技术二面", stars: 4,
+  id: 133, cat: "技术二面", stars: 4,
   q: "Supabase RLS 怎么写？遇到过 SQL 注入/鉴权绕过吗？密钥怎么管？",
   flow: "RLS两表:conversations(CREATE POLICY user_isolation USING auth.uid()=user_id WITH CHECK同,匿名拒) / messages(走外键穿透conversations防直曝conversation_id) → Key三层:anon(前端+RLS兜底) / service_role(仅Edge内部) / DEEPSEEK_KEY(仅Edge) → 真实事故:service_role误放前端(用户绕RLS查他人,回滚+通知改密) / Edge未设CORS白名单(被扫耗token,加白+IP段) / doccano导出未脱敏(含真实手机号,regex清洗) → 密钥:MediGraph早期hardcode→改os.environ+gitignore;DEEPSEEK存Vault;前端绝不出现key,CI/CD CLI注入",
   ans: "本草君 RLS：conversations 表 CREATE POLICY user_isolation ON conversations USING(auth.uid()=user_id) WITH CHECK(auth.uid()=user_id)，匿名访问直接拒；messages 表 Policy 走 EXISTS 外键穿透到 conversations（避免直曝 conversation_id 查所有消息）。Key 三层：anon key（前端+RLS 兜底，浏览器可见但只能看自己数据）、service_role key（仅 Edge Function 内部）、DEEPSEEK_API_KEY（仅 Edge）。真实踩坑：早期 service_role 误放前端，Supabase 报警，用户能绕 RLS 查他人对话，回滚 anon+事故窗口 6 小时通知改密；Edge 未设 CORS 白名单被人扫 URL 耗 token，加白名单+Vercel IP 段；doccano 导出未脱敏含真实手机号，加 data_cleaning.py regex 脱敏。密钥管理：MediGraph 早期 hardcode→改 os.environ+gitignore；DEEPSEEK 存 Supabase Vault；前端绝不出现 key，CI/CD 用 CLI 注入。"
 },
 {
-  id: 137, cat: "技术二面", stars: 5,
+  id: 134, cat: "技术二面", stars: 5,
   q: "重新设计 MediGraph，架构层三个最大问题是什么？当时为什么没做？",
   flow: "问题1缺Reranker:现状BGE+Neo4j直接Top-5(多跳命中78%)→理想加bge-reranker-large重排32→5(理论93%)→没做因时间紧+拖慢TTFT200ms+预算无Coore → 问题2缺评测体系:现状60题+3人盲评不可复现→理想RAGAS+LangSmith pytest式200题3指标门控合并→没做因RAGAS中文不稳+LangSmith付费+优先级先跑通 → 问题3缺可观测性:现状无trace工具→理想LangSmith/Phoenix+LLM-as-Judge周采样100+👍👎→没做因只关心能跑+SaaS收费 → 总结:80%价值在迭代速度,由评测+观测决定,入职第一天引LangSmith+RAGAS",
   ans: "MediGraph 重设计的三个问题：1) 缺 Reranker——现状 BGE+Neo4j 直接 Top-5（多跳命中约 78%），理想加 Cross-Encoder Reranker（bge-reranker-large）重排 32→5（理论 93%），没做因项目时间紧（6 月上线）、拖慢 TTFT 约 200ms、预算无 Cohere；2) 缺评测体系——现状 60 题+3 人盲评不可复现，理想引 RAGAS+LangSmith 写 pytest 式 200 题 3 指标门控合并，没做因 RAGAS 中文 Context Recall 不稳、LangSmith 付费、优先级先跑通；3) 缺可观测性——现状无 trace 工具，理想 LangSmith/Phoenix+LLM-as-Judge 周采样 100+👍👎，没做因只关心能跑+SaaS 收费。总结：三问题本质都是“RAG 从 Demo 到 Production 质量门控缺位”，80% 价值在迭代速度，由评测+观测决定，未来入职第一天引 LangSmith+RAGAS 把评测驱动作团队文化。"
+},
+/* ==================== 自我介绍逐字稿 ==================== */
+{
+  id: 135, cat: '自我介绍逐字稿', stars: 5,
+  q: '【一页纸速记版】整段自我介绍的压缩骨架，考前 5 分钟过一遍',
+  flow: "开场：赵文暄，2027 届河南科技大学控制工程硕士，本科哈尔滨华德学院电子信息工程，一/二等学业奖学金 + 入党积极分子 + 华为 HarmonyOS 双认证 --> 2025.09–2026.03：学位论文 SpectraScan —— 多光谱 600 样本 4 类药材，SG/MSC + PCA/SPA/CARS/LDA + SVM/RF/PLS-DA/KNN，7:3 + 5 折验证，SCI 二区共同通讯作者 --> 隐性项目：N8N 天气邮件推送工作流、Coze 内部 RAG 原型 --> 2026.03–2026.09：MediGraph —— LangGraph + LangChain 主路由 Agent；UIE + doccano 微调抽取实体 → Neo4j 图谱；Chroma + BGE-zh 向量索引 + Cypher 多跳检索 GraphRAG；FastAPI + React 云端部署；Supabase RLS + Edge Function 密钥零暴露；GPT-4o 迁移 DeepSeek 压缩成本 --> 2026.07–2026.08：本草君 —— 队长带队打河南省「秒悟」AI 大赛，中医智能问答助手，200 味中药 + 50+ 方剂 + 十八反十九畏 + 九体质 + 二十四节气养生；RAG 约束式生成抑制幻觉 + 多轮对话记忆 + SSE 流式，获省级三等奖 --> 性格：喜欢创新与新事物，队长经验锻炼统筹能力，「需求拆解 → 架构 → 开发 → 验收」标准化工作流 --> 收尾：长期关注国产大模型在企业场景的落地，相信我的 RAG/Agent 工程能力 + 全栈交付能力可以为团队带来价值",
+  ans: '您好，我叫赵文暄，2027 届河南科技大学控制工程硕士，本科哈尔滨华德学院电子信息工程，一、二等学业奖学金加入党积极分子加华为 HarmonyOS 双认证。第一阶段 2025.09 到 2026.03，学位论文 SpectraScan，多光谱 600 样本 4 类药材，SG、MSC 预处理加 PCA、SPA、CARS、LDA 特征筛选加 SVM、RF、PLS-DA、KNN 四种分类器，7:3 划分加 5 折验证，SCI 二区共同通讯作者。隐性项目方面，期间自建 N8N 天气邮件推送工作流、Coze 内部 RAG 原型，验证我对自动化加 Prompt 工程的体感。第二阶段 2026.03 到 2026.09，核心项目 MediGraph——医药知识图谱问答系统，LangGraph 加 LangChain 主路由 Agent；UIE 加 doccano 微调抽取实体灌到 Neo4j 图谱；Chroma 加 BGE-zh 向量索引加 Cypher 多跳检索构成 GraphRAG 架构；FastAPI 加 React 云端部署；Supabase RLS 加 Edge Function 保证密钥零暴露；GPT-4o 迁移 DeepSeek 大幅压缩成本。2026.07 到 2026.08，产品化项目本草君——队长身份带队打河南省「秒悟」AI 大赛，中医智能问答助手，覆盖 200 味中药加 50 多首方剂加十八反十九畏加九体质加二十四节气养生；RAG 约束式生成抑制幻觉加多轮对话记忆加 SSE 流式，获省级三等奖。性格上喜欢创新与新事物，队长经验锻炼统筹能力，「需求拆解、架构、开发、验收」标准化工作流。我长期关注国产大模型在企业场景的落地，相信我的 RAG、Agent 工程能力加全栈交付能力可以为团队带来价值，希望能加入贵公司一起把 AI 应用做到生产。以上是我的自我介绍，谢谢！'
 }
-
 ];
 
 // 分类顺序（用于侧边栏/筛选）
 const CATEGORY_ORDER = [
   "一、大模型原理基础", "二、RAG", "三、Agent", "四、Prompt工程",
   "五、LangChain与工程框架", "六、工程落地", "七、微调·量化·部署·AIGC",
-  "八、Python与机器学习基础", "九、企业面试技巧与高频综合题", "十、毕设项目规划要点",
+  "八、Python与机器学习基础", "九、企业面试技巧与高频综合题", "自我介绍逐字稿",
   "HR一面", "技术二面"
 ];
