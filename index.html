@@ -143,6 +143,11 @@
   body.dark .flow { background: #11161d; border-color: #2f3b4d; color: #bcd0e8; }
   body.dark .para { background: #121a14; border-color: #2a3a2c; color: #bfe6c8; }
   body.dark kbd { background: #11161d; }
+  /* 深色模式：表单控件与按钮改用深色底，避免白底白字看不清 */
+  body.dark select,
+  body.dark input[type="search"] { background: #0f1419; color: var(--ink); border-color: var(--line); }
+  body.dark button { background: #1a212b; }
+  body.dark button.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
   /* 间隔重复评分按钮 */
   .rate-btns { display: flex; gap: 8px; flex-wrap: wrap; }
   button.again { border-color: var(--red); color: var(--red); }
